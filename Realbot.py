@@ -9,7 +9,7 @@ from RealbotStorage import RealbotStorage
 HOST = 'irc.rizon.net'
 PORT = 6667
 NICK = 'real'
-CHANNEL = '#yt_bot_test'
+CHANNEL = '#ethereal'
 PREFIX = '\x034YouTube:\x03 '
 DB_FILE = 'realbot.db'
 
@@ -27,7 +27,7 @@ def handle_youtube(sock, url, channel):
     dash = title.rfind(' - ')
     title = title[:dash]
     send(sock, channel, PREFIX + title)
-    print 'Video ' + urls[0] + ' has title ' + title
+    print 'Video ' + url + ' has title ' + title
   except urllib2.HTTPError:
     print url + ' not found'
 
