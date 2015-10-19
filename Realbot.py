@@ -40,7 +40,7 @@ def handle_karma(sock, sender, channel, entity, increment):
     return
 
   row = storage.query('SELECT karma FROM karma WHERE entity = ?', 
-                       (entity,), True)
+                       (entity.lower(),), True)
   needs_insert = False
 
   if row is None:
@@ -55,7 +55,7 @@ def handle_karma(sock, sender, channel, entity, increment):
                   (entity, cur_val))
   else:
     storage.query('UPDATE karma SET karma = ? WHERE entity = ?',
-                  (cur_val, entity))
+                  (cur_val, entity.lower()))
   
   message = entity + '\'s karma has ' + ('increased' if increment else 'decreased') + ' to ' + str(cur_val) + '!'
   send(sock, channel, message)
