@@ -52,7 +52,7 @@ def handle_karma(sock, sender, channel, entity, increment):
 
   if needs_insert:
     storage.query('INSERT INTO karma(entity, karma) VALUES (?, ?)',
-                  (entity, cur_val))
+                  (entity.lower(), cur_val))
   else:
     storage.query('UPDATE karma SET karma = ? WHERE entity = ?',
                   (cur_val, entity.lower()))
